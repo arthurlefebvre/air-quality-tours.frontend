@@ -8,16 +8,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <router-link tag="li" to="/" class="nav-item active">
+                        <router-link tag="li" to="/" class="nav-item">
                             <a class="nav-link">Accueil</a>
                         </router-link>
                         <router-link tag="li" to="/graphiques" class="nav-item">
                             <a class="nav-link">Graphiques</a>
                         </router-link>
-                        <router-link tag="li" to="/" class="nav-item">
+                        <router-link tag="li" to="/historique" class="nav-item">
                             <a class="nav-link">Historique</a>
                         </router-link>
-                        <router-link tag="li" to="/" class="nav-item">
+                        <router-link tag="li" to="/administration/login" class="nav-item">
                             <a class="nav-link">Administration</a>
                         </router-link>
                     </ul>
