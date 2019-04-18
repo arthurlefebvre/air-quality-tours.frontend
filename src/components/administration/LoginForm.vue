@@ -1,22 +1,18 @@
 <template>
     <div>
-        <div class="container">
-            <h1>Accès à la partie administration :</h1>
-            <form>
+        <div id="loginForm">
+            <h1>Accès à la partie administration</h1>
+            <form >
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <label for="identifiant">Identifiant :</label>
+                    <input type="name" class="form-control" id="identifiant" placeholder="Identifiant administrateur">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="mdp">Mot de passe :</label>
+                    <input type="password" class="form-control" id="mdp" placeholder="Mot de passe administrateur">
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button type="submit" class="btn btn-info">Envoyer</button>
             </form>
         </div>
     </div>
@@ -30,7 +26,9 @@
 </script>
 
 <style scoped>
-    .container{
+    #loginForm {
+        width: 40%;
+        margin: auto;
         margin-top: 3%;
     }
 </style>
