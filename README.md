@@ -1,6 +1,6 @@
 # project
 
-> A Vue.js project
+> Front end project for year 4 Polytech Tours School in Industrial IT
 
 ## Build Setup
 
