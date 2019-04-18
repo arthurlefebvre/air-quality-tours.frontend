@@ -1,4 +1,4 @@
-# project
+# Air quality Tours : Frontend
 
 > Front end project for year 4 Polytech Tours School in Industrial IT
 
