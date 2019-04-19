@@ -12,9 +12,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.18",
     "bootstrap4": "0.0.1-security",
-    "jquery": "^3.4.0",
-    "popper.js": "^1.15.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

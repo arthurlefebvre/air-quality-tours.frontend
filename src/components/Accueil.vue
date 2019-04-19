@@ -14,13 +14,13 @@
                 <p>Projet DII4 Smart System</p>
             </div>
         
-            <div class="card" v-for="donnee in donnees" v-bind:key="donnee.id">
+            <div class="card" v-for="data in datas" v-bind:key="data.id">
                 <div class="card-body text-center">
-                    <p class="card-title ">{{ donnee.name }}</p>
+                    <p class="card-title ">{{ data.name }}</p>
                     <div class="row">
-                        <p class="card-subtitle col text-muted">Température : {{ donnee.temperature }}°</p>
-                        <p class="card-subtitle col text-muted">Pression : {{ donnee.pression }}Hp</p>
-                        <p class="card-subtitle col text-muted">IAQ : {{ donnee.IAQ }}/500</p>
+                        <p class="card-subtitle col text-muted">Température : {{ data.temperature }}°</p>
+                        <p class="card-subtitle col text-muted">Pression : {{ data.pression }}Hp</p>
+                        <p class="card-subtitle col text-muted">IAQ : {{ data.IAQ }}/500</p>
                     </div>
                 </div>
             </div>
@@ -38,48 +38,19 @@
         data() {
             return {
                 msg: '',
-                donnees: [
-                    {
-                        id: 1,
-                        name: 'Lovelace',
-                        temperature: 19,
-                        pression: 15,
-                        IAQ: 19
-                    },
-                    {
-                        id: 2,
-                        name: 'Bool',
-                        temperature: 18,
-                        pression: 20,
-                        IAQ: 50
-                    },
-                    {
-                        id: 3,
-                        name: 'Shannon',
-                        temperature: 18,
-                        pression: 20,
-                        IAQ: 50
-                    },
-                    {
-                        id: 4,
-                        name: 'TP Systèmes',
-                        temperature: 18,
-                        pression: 20,
-                        IAQ: 50
-                    }
-                ]
+                datas: []
             };
         },
         methods: {
-            getMessage() {
-                const path = 'http://localhost:5000/ping';
+            getDatas() {
+                const path = 'http://localhost:5000/datas';
                 axios.get(path)
-                    .then(res => this.msg = res.data)
+                    .then(res => this.datas = res.data.datas)
                     .catch(error => console.log(error))
             },
         },
         created() {
-                this.getMessage();
+                this.getDatas();
         }
     };
 </script>
