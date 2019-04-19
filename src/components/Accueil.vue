@@ -17,7 +17,7 @@
         
             <b-row align-h="around" >
                 <b-col cols="4" v-for="data in datas" v-bind:key="data.id">
-                    <b-link to="/historique" title="Cliquez pour plus de détails" >
+                    <b-link :to="{ name: 'salle', params: { id: data.id } }" title="Cliquez pour plus de détails" >
                         <b-card
                             header-tag="header"
                             style="max-width: 20rem;"
