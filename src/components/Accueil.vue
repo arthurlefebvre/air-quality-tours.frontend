@@ -11,20 +11,33 @@
         <div class="container">
             <div class="text-center">
                 <h1>Qualité de l'air Tours</h1>
-                <p>Projet DII4 Smart System</p>
+                <h5>Projet DII4 Smart System</h5>
+                <br>
             </div>
         
-            <div class="card" v-for="data in datas" v-bind:key="data.id">
-                <div class="card-body text-center">
-                    <p class="card-title ">{{ data.name }}</p>
-                    <div class="row">
-                        <p class="card-subtitle col text-muted">Température : {{ data.temperature }}°</p>
-                        <p class="card-subtitle col text-muted">Pression : {{ data.pression }}Hp</p>
-                        <p class="card-subtitle col text-muted">IAQ : {{ data.IAQ }}/500</p>
-                    </div>
-                </div>
-            </div>
+            <b-row align-h="around" >
+                <b-col cols="4" v-for="data in datas" v-bind:key="data.id">
+                    <b-link to="/historique" title="Cliquez pour plus de détails" >
+                        <b-card
+                            header-tag="header"
+                            style="max-width: 20rem;"
+                            class="mb-5"
+                        >
 
+                            <b-card-title slot="header">{{ data.name }}
+                                <span v-if="data.IAQ < 40">
+                                      <b-badge variant="success">statut</b-badge>
+                                </span>
+                                <span v-else>
+                                      <b-badge variant="warning">statut</b-badge>
+                                </span>
+
+                            </b-card-title>
+                            <b-card-text>IAQ : {{ data.IAQ }}</b-card-text>
+                        </b-card>
+                    </b-link>
+                </b-col>
+            </b-row>
         </div>
     </div>
 </template>
@@ -60,4 +73,10 @@
         width: 90%; 
         margin: auto;
     }
+
+    a {
+    color: #212529
+    }
+
+
 </style>
