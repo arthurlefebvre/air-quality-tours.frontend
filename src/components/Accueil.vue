@@ -25,15 +25,15 @@
                         >
 
                             <b-card-title slot="header">{{ data.name }}
-                                <span v-if="data.IAQ < 40">
+                                <!-- <span v-if="data.IAQ < 40">
                                       <b-badge variant="success">statut</b-badge>
                                 </span>
                                 <span v-else>
                                       <b-badge variant="warning">statut</b-badge>
-                                </span>
+                                </span> -->
 
                             </b-card-title>
-                            <b-card-text>IAQ : {{ data.IAQ }}</b-card-text>
+                            <!-- <b-card-text>IAQ : {{ data.IAQ }}</b-card-text> -->
                         </b-card>
                     </b-link>
                 </b-col>
@@ -56,9 +56,9 @@
         },
         methods: {
             getDatas() {
-                const path = 'http://localhost:5000/datas';
+                const path = 'http://localhost:5000/';
                 axios.get(path)
-                    .then(res => this.datas = res.data.datas)
+                    .then(res => this.datas = res.data)
                     .catch(error => console.log(error))
             },
         },
