@@ -25,12 +25,12 @@
                         >
 
                             <b-card-title slot="header">{{ data.name }}
-                                <!-- <span v-if="data.IAQ < 40">
+                                <span v-if="data.IAQ < 40">
                                       <b-badge variant="success">statut</b-badge>
                                 </span>
                                 <span v-else>
                                       <b-badge variant="warning">statut</b-badge>
-                                </span> -->
+                                </span>
 
                             </b-card-title>
                             <!-- <b-card-text>IAQ : {{ data.IAQ }}</b-card-text> -->

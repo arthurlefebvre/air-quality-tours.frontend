@@ -4,7 +4,7 @@
         <div id="loginForm">
                 <b-form >
                     <b-card header-tag="header" footer-tag="footer">
-                    <h6 slot="header" class="mb-0">Formulaire</h6>
+                    <h4 slot="header" class="mb-0">Formulaire</h4>
                     
                     <b-form-group
                         id="input-group-1"
