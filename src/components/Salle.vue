@@ -3,16 +3,17 @@
         <b-breadcrumb :items="items"></b-breadcrumb>
 
         <div class="container">
-            <h1>{{ donnees.name }}</h1>
-            <p>Température : {{donnees.datas[0].temperature}}°</p>
-            <p>Pression : {{donnees.datas[0].pressure}}</p>
-            <p>Humidité : {{donnees.datas[0].humidity}}</p>
-            <p>IAQ : {{donnees.datas[0].IAQ}}</p>
+            <h1 class="text-center">{{ donnees.name }}</h1>
+            <br>
+            <b-table striped :items="tableData"></b-table>
+
 
             <b-button class="btn btn-info" @click="getData">Recharger</b-button>
 
         </div>
-
+        <br><br>
+        <br><br>
+        <h1 class="text-center">Evolution de la qualité de l'air dans la salle {{donnees.name}}</h1>
         <line-chart v-if="loaded" :chartdata="chartdata" :options="options"></line-chart>
     </div>
 
@@ -28,7 +29,6 @@
         components: { LineChart },
         data() {
             return {
-                donnees: [],
                 items: [
                     {
                         text: 'Accueil',
@@ -39,14 +39,40 @@
                         active: true
                     }
                 ],
+                donnees: [],
+                tableData: [],
                 chartdata: {
                     labels: [],
                     datasets: [
                         {
-                        label: 'IAQ',
-                        backgroundColor: '#f87979',
-                        data: []
-                    }]
+                            label: 'IAQ',
+                            backgroundColor: 'blue',
+                            borderColor: 'blue',
+                            data: [],
+                            fill: false
+                        },
+                        {
+                            label: 'Temperature',
+                            backgroundColor: 'green',
+                            borderColor: 'green',
+                            data: [],
+                            fill: false
+                        },
+                        {
+                            label: 'Pression',
+                            backgroundColor: 'red',
+                            borderColor: 'red',
+                            data: [],
+                            fill: false
+                        },
+                        {
+                            label: 'Humidité',
+                            backgroundColor: 'grey',
+                            borderColor: 'grey',
+                            data: [],
+                            fill: false
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -56,17 +82,36 @@
             }
         },
         methods: {
+            updateTableData(telemetricData) {
+                this.tableData = [{
+                    temperature: telemetricData.temperature,
+                    pression: telemetricData.pressure,
+                    humidite: telemetricData.humidity,
+                    IAQ: telemetricData.IAQ
+                }]
+            },
+
+            updateChartDataAndLabel(datas){
+                this.chartdata.labels = datas.map(data => data.date)   
+                this.chartdata.datasets[0].data = datas.map(data => data.IAQ)
+                this.chartdata.datasets[1].data = datas.map(data => data.temperature)
+                this.chartdata.datasets[2].data = datas.map(data => data.pressure)
+                this.chartdata.datasets[3].data = datas.map(data => data.humidity)
+
+            },
+
             getData() {
                 this.loaded = false
                 console.log("getData call")
                 const path = `http://localhost:5000/salle/${this.id}`;
                 axios.get(path)
                     .then(res => {
+                        const telemetricData = res.data.datas[0]
+                        const chartDataAndLabel = res.data.datas
+                        
                         this.donnees = res.data
-                        this.chartdata.labels = res.data.datas.map(data => data.date)   
-                        this.chartdata.datasets[0].data = res.data.datas.map(data => data.IAQ)
-
-                        console.log(this.chartdata.datasets.data)
+                        this.updateTableData(telemetricData)
+                        this.updateChartDataAndLabel(chartDataAndLabel)
                         this.loaded = true
                     })
                     .catch(error => console.log(error))
