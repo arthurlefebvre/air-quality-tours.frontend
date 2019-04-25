@@ -16,7 +16,7 @@
             </div>
         
             <b-row align-h="around" >
-                <b-col cols="4" v-for="data in datas" v-bind:key="data.id">
+                <b-col cols="4" v-for="data in donnees" v-bind:key="data.id">
                     <b-link :to="{ name: 'salle', params: { id: data.id } }" title="Cliquez pour plus de détails" >
                         <b-card
                             header-tag="header"
@@ -25,15 +25,17 @@
                         >
 
                             <b-card-title slot="header">{{ data.name }}
-                                <!-- <span v-if="data.IAQ < 40">
+                                <span v-if="data.IAQ < 40">
                                       <b-badge variant="success">statut</b-badge>
                                 </span>
                                 <span v-else>
                                       <b-badge variant="warning">statut</b-badge>
-                                </span> -->
+                                </span>
 
                             </b-card-title>
-                            <!-- <b-card-text>IAQ : {{ data.IAQ }}</b-card-text> -->
+                            <b-card-text>Temp : {{ data.datas[0].temperature }}°</b-card-text>
+                            <b-card-text>IAQ : {{ data.datas[0].IAQ }}</b-card-text>
+
                         </b-card>
                     </b-link>
                 </b-col>
@@ -51,14 +53,14 @@
         data() {
             return {
                 msg: '',
-                datas: []
+                donnees: []
             };
         },
         methods: {
             getDatas() {
                 const path = 'http://localhost:5000/';
                 axios.get(path)
-                    .then(res => this.datas = res.data)
+                    .then(res => this.donnees = res.data)
                     .catch(error => console.log(error))
             },
         },
