@@ -103,7 +103,7 @@
             getData() {
                 this.loaded = false
                 console.log("getData call")
-                const path = `http://localhost:5000/salle/${this.id}`;
+                const path = `http://192.168.1.28:5000/salle/${this.id}`;
                 axios.get(path)
                     .then(res => {
                         const telemetricData = res.data.datas[0]

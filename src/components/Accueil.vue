@@ -58,7 +58,7 @@
         },
         methods: {
             getDatas() {
-                const path = 'http://localhost:5000/';
+                const path = 'http://192.168.1.28:5000/';
                 axios.get(path)
                     .then(res => this.donnees = res.data)
                     .catch(error => console.log(error))
